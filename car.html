@@ -3,132 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ABC Motors | Car Details</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <title>DriveHub | Premium Vehicle</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #fafaf8; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
-    
-    /* Галерея */
-    .gallery {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 32px;
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Plus Jakarta Sans',sans-serif; background:#fff; }
+    .container { max-width:1280px; margin:0 auto; padding:32px; }
+    .back-link { display:inline-block; margin-bottom:32px; font-weight:600; color:#007A5E; text-decoration:none; }
+    .car-detail-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:48px;
     }
-    @media (min-width: 768px) {
-      .gallery { grid-template-columns: repeat(2, 1fr); }
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 24px;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-    }
-    
-    /* Спецификации */
-    .specs {
-      background: white;
-      padding: 32px;
-      border-radius: 32px;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-      gap: 24px;
-    }
-    .price-large {
-      font-size: 48px;
-      font-weight: 700;
-      color: #00a86b;
-      margin: 16px 0;
-    }
-    
-    /* Кнопки */
-    .btn-group {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin: 24px 0;
-    }
-    .btn-call, .btn-wa, .btn-form {
-      padding: 16px 32px;
-      border-radius: 60px;
-      text-decoration: none;
-      font-weight: 600;
-      text-align: center;
-      flex: 1;
-    }
-    .btn-call { background: #1a1a1a; color: white; }
-    .btn-wa { background: #25D366; color: white; }
-    .btn-form { background: #f0f0f0; color: #1a1a1a; cursor: pointer; }
-    
-    .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
-      color: #666;
-      text-decoration: none;
-    }
-    
-    @media (max-width: 768px) {
-      .specs { grid-template-columns: 1fr; }
+    .main-img { width:100%; border-radius:28px; aspect-ratio:4/3; object-fit:cover; }
+    .price-large { font-size:52px; font-weight:800; color:#007A5E; margin:16px 0; }
+    .spec-list { display:flex; flex-wrap:wrap; gap:20px; margin:28px 0; padding:28px; background:#f7f7f5; border-radius:32px; }
+    .spec-item { flex:1; min-width:120px; }
+    .spec-label { font-size:13px; text-transform:uppercase; font-weight:700; color:#6b6b6b; }
+    .spec-value { font-size:18px; font-weight:700; margin-top:6px; }
+    .btn-group { display:flex; gap:16px; margin:32px 0; flex-wrap:wrap; }
+    .btn-primary { background:#000; color:white; padding:16px 32px; border-radius:60px; text-decoration:none; font-weight:700; text-align:center; flex:1; }
+    .btn-wa { background:#25D366; color:white; padding:16px 32px; border-radius:60px; text-align:center; flex:1; text-decoration:none; font-weight:700; }
+    @media (max-width:800px) {
+      .car-detail-grid { grid-template-columns:1fr; gap:24px; }
+      .container { padding:20px; }
     }
   </style>
 </head>
 <body>
-<div class="container" id="carContainer">
-  <a href="/" class="back-link">← Назад к каталогу</a>
-  <div style="text-align:center; padding:60px;">Загрузка информации...</div>
+<div class="container" id="detailRoot">
+  <div style="text-align:center; padding:100px 20px;">Загрузка...</div>
 </div>
-
 <script>
-  // Та же база (в реальности вынесешь в общий JSON)
-  const carsDatabase = [
-    { id: "bmw-x5-2023", brand: "BMW", model: "X5", year: 2023, price: 49900, mileage: 15200, fuel: "Premium", transmission: "Automatic", color: "Black Sapphire", vin: "5UXCR6C09P9N12345", image: "https://images.unsplash.com/photo-1607853202273-1b494d8c6e5b?w=800", description: "Люксовая комплектация с пакетом M Sport, кожа Merino, подогрев руля, панорамная крыша." },
-    { id: "mercedes-gle-2023", brand: "Mercedes", model: "GLE 450", year: 2023, price: 58900, mileage: 11300, fuel: "Premium", transmission: "Automatic", color: "White", vin: "4JGFB4KB8PA123456", image: "https://images.unsplash.com/photo-1617814076367-b759c7d9e738?w=800", description: "AMG пакет, кожа Nappa, 4MATIC, подогрев всех сидений." },
-    { id: "audi-q8-2024", brand: "Audi", model: "Q8", year: 2024, price: 69900, mileage: 5400, fuel: "Premium", transmission: "Automatic", color: "Daytona Gray", vin: "WA1BVBF14PD012345", image: "https://images.unsplash.com/photo-1606661282733-6c9bc9b2c3c7?w=800", description: "Quattro, Bang & Olufsen, 3D камеры." },
-    { id: "porsche-cayenne-2022", brand: "Porsche", model: "Cayenne", year: 2022, price: 74900, mileage: 28600, fuel: "Premium", transmission: "Automatic", color: "Jet Black", vin: "WP1AA2AY2PDA12345", image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=800", description: "Пакет Sport Chrono, адаптивный круиз-контроль." }
+  const CARS_DB = [
+    { id:"bmw-x5-24", brand:"BMW", model:"X5", year:2024, price:56900, mileage:8200, fuel:"Premium", transmission:"Automatic", color:"Brooklyn Grey", vin:"5UX43DP09R9L1234", image:"https://images.unsplash.com/photo-1607853202273-1b494d8c6e5b?w=900", description:"M Sport пакет, контурная подсветка, климат-контроль 4 зоны, гарнитура Harman Kardon." },
+    { id:"mercedes-gle", brand:"Mercedes-Benz", model:"GLE 450", year:2023, price:62900, mileage:12400, fuel:"Premium", transmission:"Automatic", color:"Obsidian Black", vin:"4JGFB4KB0PA98765", image:"https://images.unsplash.com/photo-1617814076367-b759c7d9e738?w=900", description:"AMG Line, кожа Nappa, пневмоподвеска, 360° камеры." },
+    { id:"audi-q8", brand:"Audi", model:"Q8 Prestige", year:2024, price:72900, mileage:3800, fuel:"Premium", transmission:"Automatic", color:"Daytona Gray", vin:"WA1BVBF12RD89123", image:"https://images.unsplash.com/photo-1606661282733-6c9bc9b2c3c7?w=900", description:"Quattro, Bang & Olufsen 3D, адаптивный круиз." },
+    { id:"porsche-cayenne", brand:"Porsche", model:"Cayenne S", year:2023, price:83900, mileage:9400, fuel:"Premium", transmission:"Automatic", color:"Carmine Red", vin:"WP1AB2AY7PDA45678", image:"https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=900", description:"Sport Chrono, панорамная крыша, кожаные спортивные сиденья." },
+    { id:"lexus-rx", brand:"Lexus", model:"RX 350", year:2025, price:54900, mileage:3200, fuel:"Hybrid", transmission:"Automatic", color:"Eminent White", vin:"2T2HZMDA6PC123456", image:"https://images.unsplash.com/photo-1618842676088-c4d48a6a7c9d?w=900", description:"Mark Levinson, проекционный дисплей, полуанилин." }
   ];
-
-  const params = new URLSearchParams(window.location.search);
-  const carId = params.get('id');
-  const car = carsDatabase.find(c => c.id === carId);
-
+  const urlParams = new URLSearchParams(window.location.search);
+  const carId = urlParams.get('id');
+  const car = CARS_DB.find(c => c.id === carId);
+  const container = document.getElementById('detailRoot');
   if (car) {
-    document.getElementById('carContainer').innerHTML = `
+    container.innerHTML = `
       <a href="/" class="back-link">← Назад к каталогу</a>
-      <h1>${car.brand} ${car.model} ${car.year}</h1>
-      <div class="price-large">$${car.price.toLocaleString()}</div>
-      
-      <div class="gallery">
-        <img src="${car.image}" alt="${car.brand} ${car.model}">
-        <img src="${car.image.replace('?w=800','?w=800&2') || car.image}" alt="Дополнительное фото" onerror="this.src='${car.image}'">
-      </div>
-      
-      <div class="specs">
-        <div><strong>Пробег</strong><br>${car.mileage.toLocaleString()} миль</div>
-        <div><strong>Топливо</strong><br>${car.fuel}</div>
-        <div><strong>Коробка</strong><br>${car.transmission}</div>
-        <div><strong>Цвет</strong><br>${car.color}</div>
-        <div><strong>VIN</strong><br>${car.vin}</div>
-        <div><strong>Гарантия</strong><br>6 месяцев</div>
-      </div>
-      
-      <p style="font-size:16px; line-height:1.6; margin:24px 0;">${car.description}</p>
-      
-      <div class="btn-group">
-        <a href="tel:+16125551234" class="btn-call">📞 Позвонить</a>
-        <a href="https://wa.me/16125551234" class="btn-wa" target="_blank">💬 WhatsApp</a>
-        <button class="btn-form" onclick="alert('Заявка отправлена! Мы перезвоним в течение 15 минут.')">🚙 Записаться на тест-драйв</button>
-      </div>
-      
-      <div style="background:#f0f0f0; padding:24px; border-radius:24px; margin-top:24px;">
-        <h3>✅ Проверка автомобиля</h3>
-        <p>✅ Отчет Carfax доступен<br>✅ Кредит и лизинг от 0.9%<br>✅ Обмен вашего авто</p>
+      <div class="car-detail-grid">
+        <div><img class="main-img" src="${car.image}" alt="${car.brand} ${car.model}"></div>
+        <div>
+          <h1 style="font-size:42px; font-weight:800;">${car.brand} ${car.model} ${car.year}</h1>
+          <div class="price-large">$${car.price.toLocaleString()}</div>
+          <div class="spec-list">
+            <div class="spec-item"><div class="spec-label">Пробег</div><div class="spec-value">${car.mileage.toLocaleString()} mi</div></div>
+            <div class="spec-item"><div class="spec-label">Трансмиссия</div><div class="spec-value">${car.transmission}</div></div>
+            <div class="spec-item"><div class="spec-label">Топливо</div><div class="spec-value">${car.fuel}</div></div>
+            <div class="spec-item"><div class="spec-label">Цвет</div><div class="spec-value">${car.color}</div></div>
+            <div class="spec-item"><div class="spec-label">VIN</div><div class="spec-value">${car.vin}</div></div>
+          </div>
+          <p style="font-size:16px; line-height:1.5; margin:12px 0;">${car.description}</p>
+          <div class="btn-group">
+            <a href="tel:+16128882025" class="btn-primary">📞 Позвонить дилеру</a>
+            <a href="https://wa.me/16128882025" class="btn-wa" target="_blank">💬 Написать в WhatsApp</a>
+          </div>
+          <div style="background:#f0f0ef; padding:20px; border-radius:28px; margin-top:32px;">
+            ⚡ Кредит от 0.9% | Лизинг 24-60 мес | Обмен авто
+          </div>
+        </div>
       </div>
     `;
   } else {
-    document.getElementById('carContainer').innerHTML = `<h1>Автомобиль не найден</h1><a href="/">Вернуться в каталог</a>`;
+    container.innerHTML = `<h1>Автомобиль не найден</h1><a href="/">Вернуться в каталог</a>`;
   }
 </script>
 </body>
