@@ -1,344 +1,502 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>DriveHub | Premium Used Cars</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YISHU LUXURY | Premium Automotive Inventory</title>
+  <meta name="description" content="Exclusive collection of pre-owned luxury and performance vehicles. Exceptional condition, certified history, instant booking.">
+  <link rel="canonical" href="https://yishu.business/">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800;900&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg: #050505;
+      --surface: #0f0f11;
+      --surface-hover: #16161a;
+      --border: #1f1f24;
+      --text: #f3f4f6;
+      --text-muted: #888893;
+      --accent: #00a86b;
+      --accent-glow: rgba(0, 168, 107, 0.15);
+      --font: 'Inter', sans-serif;
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      background: #ffffff;
-      color: #111;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    /* Glassmorphic header */
-    .header {
+
+    /* PREMIUM HEADER */
+    header {
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      backdrop-filter: blur(20px);
-      background: rgba(255,255,255,0.92);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      z-index: 50;
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 100;
     }
-    .nav {
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: clamp(1rem, 2vw, 1.5rem) 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
-      flex-wrap: wrap;
-      gap: 20px;
     }
     .logo {
-      font-size: 28px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #000, #333);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -0.5px;
-    }
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-    .nav-links a {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      color: #fff;
       text-decoration: none;
-      color: #1a1a1a;
-      font-weight: 600;
     }
-    .btn-outline {
-      border: 1.5px solid #111;
-      padding: 10px 24px;
-      border-radius: 40px;
-      transition: all 0.2s;
+    .logo span { color: var(--accent); }
+    .nav-phone {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      transition: all 0.3s ease;
     }
-    .btn-outline:hover {
-      background: #111;
-      color: white;
+    .nav-phone:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
     }
-    /* Hero section */
+
+    /* HERO INTRO */
     .hero {
-      padding: 80px 0 60px;
-      background: linear-gradient(145deg, #faf9f6 0%, #ffffff 100%);
+      max-width: 1400px;
+      margin: clamp(3rem, 6vw, 6rem) auto 2rem auto;
+      padding: 0 2rem;
     }
     .hero h1 {
-      font-size: clamp(44px, 7vw, 72px);
-      font-weight: 800;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
       line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
+      margin-bottom: 1rem;
     }
     .hero p {
-      font-size: 18px;
-      color: #444;
+      color: var(--text-muted);
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
       max-width: 600px;
+      font-weight: 300;
     }
-    /* Filters — как у топ-дилеров */
-    .filters-card {
-      background: white;
-      border-radius: 28px;
-      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
-      padding: 32px;
-      margin: -40px 0 48px;
-      position: relative;
-      z-index: 10;
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(0,0,0,0.05);
+
+    /* FILTERS BAR */
+    .filters-section {
+      max-width: 1400px;
+      margin: 3rem auto;
+      padding: 0 2rem;
     }
-    .filters-grid {
+    .filters-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .filter-group {
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      align-items: flex-end;
+      flex-direction: column;
+      gap: 0.5rem;
     }
-    .filter-field {
-      flex: 1;
-      min-width: 160px;
-    }
-    .filter-field label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
+    .filter-group label {
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
-      color: #666;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 600;
     }
-    .filter-field select, .filter-field input {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 20px;
-      border: 1px solid #eaeaea;
-      background: #fefefe;
-      font-family: inherit;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-    .filter-field select:focus, .filter-field input:focus {
-      outline: none;
-      border-color: #000;
-    }
-    .search-btn {
-      background: #000;
-      color: white;
-      border: none;
-      padding: 14px 32px;
-      border-radius: 40px;
-      font-weight: 700;
+    .filter-group select {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 0.95rem;
       cursor: pointer;
-      transition: 0.2s;
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888893'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1rem;
+      transition: border-color 0.2s ease;
     }
-    .search-btn:hover {
-      background: #2c2c2c;
-      transform: scale(0.97);
+    .filter-group select:focus {
+      border-color: var(--accent);
     }
-    /* Car grid — минималистично и дорого */
-    .cars-header {
+
+    /* VEHICLE GRID (CLS COMPLIANT) */
+    .inventory-section {
+      max-width: 1400px;
+      margin: 0 auto 6rem auto;
+      padding: 0 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2.5rem;
+      min-height: 400px; /* Prevents CLS collapse when empty */
+    }
+
+    /* LUXURY VEHICLE CARD */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #33333c;
+    }
+    .image-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: #111;
+      overflow: hidden;
+    }
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card:hover .image-box img {
+      transform: scale(1.05);
+    }
+    .badge {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      background: rgba(5, 5, 5, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .card-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .card-header-meta {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
     }
-    .cars-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 32px;
-      margin-bottom: 80px;
-    }
-    .car-card {
-      border-radius: 28px;
-      overflow: hidden;
-      transition: all 0.35s cubic-bezier(0.2, 0, 0, 1);
-      background: white;
-      cursor: pointer;
-    }
-    .car-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.15);
-    }
-    .car-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-    .car-card:hover .car-img {
-      transform: scale(1.02);
-    }
-    .car-info {
-      padding: 20px 20px 24px;
-    }
-    .car-title {
-      font-size: 20px;
+    .card-title {
+      font-size: 1.4rem;
       font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
     }
-    .car-details {
+    .card-year {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .card-specs {
       display: flex;
-      gap: 12px;
-      margin: 12px 0;
-      color: #5a5a5a;
-      font-size: 14px;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
     }
-    .price-tag {
-      font-size: 26px;
-      font-weight: 800;
-      color: #007A5E;
-      margin: 12px 0;
-    }
-    .view-link {
-      font-weight: 700;
-      color: #000;
-      text-decoration: none;
-      display: inline-flex;
+    .card-footer-meta {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
+      margin-top: auto;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
     }
-    .footer {
-      background: #f7f7f5;
-      padding: 48px 0;
+    .price-box {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+    }
+    .action-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* EMPTY STATES */
+    .no-results {
+      grid-column: 1 / -1;
       text-align: center;
-      margin-top: 40px;
-      color: #3a3a3a;
+      padding: 5rem 2rem;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      font-weight: 300;
     }
+
+    /* MOBILE-FIRST FLOATING CALL (STICKY BOTTOM CONTAINER) */
     @media (max-width: 768px) {
-      .container { padding: 0 20px; }
-      .filters-card { padding: 24px; margin-top: -20px; }
-      .cars-grid { gap: 20px; }
+      .grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .filters-wrapper { grid-template-columns: 1fr; }
+      .nav-phone { display: none; }
+      
+      .mobile-sticky-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(5, 5, 5, 0.85);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid var(--border);
+        padding: 1rem 1.5rem;
+        z-index: 999;
+        display: block;
+      }
+      .mobile-call-btn {
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 168, 107, 0.3);
+      }
+      .inventory-section { margin-bottom: 8rem; }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-sticky-bar { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="container">
-      <div class="nav">
-        <div class="logo">DRIVEHUB</div>
-        <div class="nav-links">
-          <a href="#">Inventory</a>
-          <a href="#">Finance</a>
-          <a href="#" class="btn-outline">+1 (612) 888-2025</a>
-        </div>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">YISHU<span>.</span></a>
+      <a href="tel:+16125550199" class="nav-phone">+1 (612) 555-0199</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>The Elite Collection</h1>
+    <p>Curated high-performance machinery. Precision engineered. Uncompromising quality control.</p>
+  </section>
+
+  <section class="filters-section">
+    <div class="filters-wrapper">
+      <div class="filter-group">
+        <label for="brandFilter">Brand</label>
+        <select id="brandFilter">
+          <option value="all">All Brands</option>
+          <option value="Porsche">Porsche</option>
+          <option value="Mercedes-Benz">Mercedes-Benz</option>
+          <option value="BMW">BMW</option>
+          <option value="Audi">Audi</option>
+          <option value="Lexus">Lexus</option>
+          <option value="Land Rover">Range Rover</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="priceFilter">Max Price</label>
+        <select id="priceFilter">
+          <option value="all">Any Price</option>
+          <option value="90000">$90,000</option>
+          <option value="120000">$120,000</option>
+          <option value="160000">$160,000</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="yearFilter">Minimum Year</label>
+        <select id="yearFilter">
+          <option value="all">Any Year</option>
+          <option value="2021">2021+</option>
+          <option value="2022">2022+</option>
+          <option value="2023">2023+</option>
+        </select>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="hero">
-    <div class="container">
-      <h1>Правильные машины.<br>Без компромиссов.</h1>
-      <p>Премиальный автопортал в Миннесоте. Каждая машина — с прозрачной историей и гарантией.</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="filters-card">
-      <div class="filters-grid">
-        <div class="filter-field">
-          <label>МАРКА</label>
-          <select id="brandSelect">
-            <option value="">Все марки</option>
-            <option>BMW</option><option>Mercedes-Benz</option><option>Audi</option>
-            <option>Porsche</option><option>Lexus</option>
-          </select>
-        </div>
-        <div class="filter-field">
-          <label>ЦЕНА ДО</label>
-          <input type="number" id="priceMax" placeholder="$">
-        </div>
-        <div class="filter-field">
-          <label>ГОД</label>
-          <select id="yearSelect"><option value="">Любой</option></select>
-        </div>
-        <button class="search-btn" id="applyFilters">Найти авто →</button>
+  <section class="inventory-section">
+    <div id="inventoryGrid" class="grid">
       </div>
-    </div>
+  </section>
 
-    <div class="cars-header">
-      <h2 style="font-weight:700">📸 Доступные автомобили</h2>
-      <span id="resultCount" style="color:#666">4 авто</span>
-    </div>
-    <div id="carsGrid" class="cars-grid"></div>
-  </div>
-
-  <div class="footer">
-    <div class="container">
-      <p>© 2025 DriveHub — Premium Pre-Owned | Лизинг от 0.9% | Обмен авто</p>
-    </div>
+  <div class="mobile-sticky-bar">
+    <a href="tel:+16125550199" class="mobile-call-btn">Call Specialist</a>
   </div>
 
   <script>
-    // АВТОМОБИЛИ — РЕАЛЬНЫЙ ПРЕМИУМ СПИСОК
-    const CARS = [
-      { id: "bmw-x5-24", brand: "BMW", model: "X5", year: 2024, price: 56900, mileage: 8200, fuel: "Premium", transmission: "Auto", color: "Brooklyn Grey", image: "https://images.unsplash.com/photo-1607853202273-1b494d8c6e5b?w=600", vin: "5UX43DP09R9L1234" },
-      { id: "mercedes-gle", brand: "Mercedes-Benz", model: "GLE 450", year: 2023, price: 62900, mileage: 12400, fuel: "Premium", transmission: "Auto", color: "Obsidian Black", image: "https://images.unsplash.com/photo-1617814076367-b759c7d9e738?w=600", vin: "4JGFB4KB0PA98765" },
-      { id: "audi-q8", brand: "Audi", model: "Q8 Prestige", year: 2024, price: 72900, mileage: 3800, fuel: "Premium", transmission: "Auto", color: "Daytona Gray", image: "https://images.unsplash.com/photo-1606661282733-6c9bc9b2c3c7?w=600", vin: "WA1BVBF12RD89123" },
-      { id: "porsche-cayenne", brand: "Porsche", model: "Cayenne S", year: 2023, price: 83900, mileage: 9400, fuel: "Premium", transmission: "Auto", color: "Carmine Red", image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=600", vin: "WP1AB2AY7PDA45678" },
-      { id: "lexus-rx", brand: "Lexus", model: "RX 350", year: 2025, price: 54900, mileage: 3200, fuel: "Hybrid", transmission: "Auto", color: "Eminent White", image: "https://images.unsplash.com/photo-1618842676088-c4d48a6a7c9d?w=600", vin: "2T2HZMDA6PC123456" }
+    const VEHICLE_DATASETS = [
+      {
+        id: "porsche-911",
+        brand: "Porsche",
+        model: "911 Carrera S",
+        year: 2023,
+        price: 142500,
+        mileage: "4,200 mi",
+        engine: "3.0L Twin-Turbo H6",
+        transmission: "8-Speed PDK",
+        img: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80",
+        badge: "Certified Pre-Owned"
+      },
+      {
+        id: "amg-gt",
+        brand: "Mercedes-Benz",
+        model: "AMG GT 53 4-Door",
+        year: 2022,
+        price: 118900,
+        mileage: "11,500 mi",
+        engine: "3.0L Inline-6 Turbo",
+        transmission: "9-Speed AMG SPEEDSHIFT",
+        img: "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=800&q=80",
+        badge: "New Arrival"
+      },
+      {
+        id: "bmw-m8",
+        brand: "BMW",
+        model: "M8 Competition Gran Coupe",
+        year: 2023,
+        price: 134900,
+        mileage: "2,800 mi",
+        engine: "4.4L Twin-Turbo V8",
+        transmission: "8-Speed M Steptronic",
+        img: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80",
+        badge: "Executive Demo"
+      },
+      {
+        id: "audi-rs7",
+        brand: "Audi",
+        model: "RS7 Sportback",
+        year: 2022,
+        price: 114000,
+        mileage: "14,100 mi",
+        engine: "4.0L Twin-Turbo V8",
+        transmission: "8-Speed Tiptronic",
+        img: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=800&q=80",
+        badge: "Clean Title"
+      },
+      {
+        id: "lexus-lc",
+        brand: "Lexus",
+        model: "LC 500 Performance",
+        year: 2021,
+        price: 89500,
+        mileage: "18,900 mi",
+        engine: "5.0L Naturally Aspirated V8",
+        transmission: "10-Speed Sport Direct Shift",
+        img: "https://images.unsplash.com/photo-1616422285623-13ff0162193c?auto=format&fit=crop&w=800&q=80",
+        badge: "Stunning Condition"
+      },
+      {
+        id: "range-rover",
+        brand: "Land Rover",
+        model: "Range Rover Autobiography",
+        year: 2023,
+        price: 158000,
+        mileage: "6,400 mi",
+        engine: "4.4L Twin-Turbo V8",
+        transmission: "8-Speed Automatic",
+        img: "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=800&q=80",
+        badge: "Top Spec"
+      }
     ];
 
-    function generateYears() {
-      const select = document.getElementById('yearSelect');
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear; y >= 2018; y--) {
-        const option = document.createElement('option');
-        option.value = y;
-        option.textContent = y;
-        select.appendChild(option);
-      }
-    }
-    generateYears();
+    const grid = document.getElementById('inventoryGrid');
+    const brandFilter = document.getElementById('brandFilter');
+    const priceFilter = document.getElementById('priceFilter');
+    const yearFilter = document.getElementById('yearFilter');
 
-    function renderCars(cars) {
-      const grid = document.getElementById('carsGrid');
-      const countSpan = document.getElementById('resultCount');
-      if (!cars.length) {
-        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:60px;">🚫 Нет машин по таким фильтрам</div>`;
-        countSpan.innerText = '0 авто';
+    function renderInventory() {
+      const selectedBrand = brandFilter.value;
+      const selectedPrice = priceFilter.value;
+      const selectedYear = yearFilter.value;
+
+      const filtered = VEHICLE_DATASETS.filter(car => {
+        if (selectedBrand !== 'all' && car.brand !== selectedBrand) return false;
+        if (selectedPrice !== 'all' && car.price > parseInt(selectedPrice)) return false;
+        if (selectedYear !== 'all' && car.year < parseInt(selectedYear)) return false;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="no-results">No elite machinery matches your specific criteria. Try adjusting the parameters.</div>`;
         return;
       }
-      countSpan.innerText = cars.length + ' авто';
-      grid.innerHTML = cars.map(car => `
-        <div class="car-card" onclick="location.href='/car.html?id=${car.id}'">
-          <img class="car-img" src="${car.image}" alt="${car.brand} ${car.model}" loading="lazy">
-          <div class="car-info">
-            <div class="car-title">${car.brand} ${car.model} ${car.year}</div>
-            <div class="car-details">
-              <span>📅 ${car.year}</span>
-              <span>⚡ ${car.mileage.toLocaleString()} mi</span>
-              <span>⛽ ${car.fuel}</span>
-            </div>
-            <div class="price-tag">$${car.price.toLocaleString()}</div>
-            <span class="view-link">Подробнее →</span>
+
+      grid.innerHTML = filtered.map(car => `
+        <a href="car.html?id=${car.id}" class="card">
+          <div class="image-box">
+            <span class="badge">${car.badge}</span>
+            <picture>
+              <source srcset="${car.img}" type="image/jpeg">
+              <img src="${car.img}" alt="${car.brand} ${car.model}" loading="lazy" width="400" height="250">
+            </picture>
           </div>
-        </div>
+          <div class="card-body">
+            <div class="card-header-meta">
+              <h2 class="card-title">${car.brand} ${car.model}</h2>
+              <span class="card-year">${car.year}</span>
+            </div>
+            <div class="card-specs">
+              <span>${car.mileage}</span>
+              <span>•</span>
+              <span>${car.transmission}</span>
+            </div>
+            <div class="card-footer-meta">
+              <div class="price-box">$${car.price.toLocaleString()}</div>
+              <div class="action-link">View Assets &rarr;</div>
+            </div>
+          </div>
+        </a>
       `).join('');
     }
 
-    function filterCars() {
-      const brand = document.getElementById('brandSelect').value;
-      const maxPrice = parseInt(document.getElementById('priceMax').value) || Infinity;
-      const year = document.getElementById('yearSelect').value;
-      const filtered = CARS.filter(car => {
-        if (brand && car.brand !== brand) return false;
-        if (car.price > maxPrice) return false;
-        if (year && car.year !== parseInt(year)) return false;
-        return true;
-      });
-      renderCars(filtered);
-    }
+    // INSTANT REACTIVE EVENT LISTENERS
+    brandFilter.addEventListener('change', renderInventory);
+    priceFilter.addEventListener('change', renderInventory);
+    yearFilter.addEventListener('change', renderInventory);
 
-    document.getElementById('applyFilters').addEventListener('click', filterCars);
-    renderCars(CARS);
+    // FIRST PAINT EXECUTION
+    renderInventory();
   </script>
 </body>
 </html>
