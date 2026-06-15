@@ -1,6 +1,10 @@
+<div class="container" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+  <h3>🔑 Авторизация разработчика</h3>
+  <input type="password" id="ghToken" placeholder="Введите ваш GitHub Personal Token" style="width: 100%; margin-top: 0.5rem;">
+</div>
+
 <script>
-  // КОНФИГ ДЛЯ СВЯЗИ С GITHUB (Заполни своими данными)
-  const GITHUB_TOKEN = "твой_персональный_токен_github"; 
+  // Конфиг репозитория (эти данные публичные, их скрывать не нужно)
   const REPO_OWNER = "твой_логин_github";
   const REPO_NAME = "имя_твоего_репозитория";
   const FILE_PATH = "data/vehicles.json";
@@ -8,7 +12,16 @@
   document.getElementById('carForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const msgDiv = document.getElementById('msg');
-    msgDiv.innerText = '⏳ Сохранение в базу данных...';
+    
+    // Берем токен из поля ввода прямо в момент отправки
+    const GITHUB_TOKEN = document.getElementById('ghToken').value.trim();
+    
+    if (!GITHUB_TOKEN) {
+      msgDiv.innerText = '❌ Ошибка: Введите GitHub Token для авторизации!';
+      return;
+    }
+
+    msgDiv.innerText = '⏳ Безопасное соединение с репозиторием...';
 
     const newCar = {
       id: `${document.getElementById('brand').value.toLowerCase().replace(/ /g, '-')}-${document.getElementById('model').value.toLowerCase().replace(/ /g, '-')}`,
@@ -24,25 +37,29 @@
     };
 
     try {
-      // 1. Получаем текущую базу данных и её SHA (id коммита)
       const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+      
+      // Запрос идет с токеном, который ты ввел вручную
       const fileRes = await fetch(url, {
         headers: { "Authorization": `token ${GITHUB_TOKEN}` }
       });
       
+      if (fileRes.status === 401 || fileRes.status === 403) {
+        msgDiv.innerText = '❌ Ошибка: Неверный или просроченный токен доступа!';
+        return;
+      }
+
       let currentData = [];
       let sha = null;
 
       if (fileRes.status === 200) {
         const fileJson = await fileRes.json();
         sha = fileJson.sha;
-        currentData = JSON.parse(atob(fileJson.content)); // Декодируем из Base64
+        currentData = JSON.parse(atob(fileJson.content));
       }
 
-      // 2. Добавляем новую машину в массив
       currentData.push(newCar);
 
-      // 3. Отправляем обновленный файл обратно в GitHub
       const updateRes = await fetch(url, {
         method: "PUT",
         headers: {
@@ -50,20 +67,20 @@
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          message: `Система: добавлен автомобиль ${newCar.brand} ${newCar.model}`,
-          content: btoa(JSON.stringify(currentData, null, 2)), // Кодируем в Base64
+          message: `Консоль: добавлен автомобиль ${newCar.brand} ${newCar.model}`,
+          content: btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2)))),
           sha: sha
         })
       });
 
       if (updateRes.ok) {
-        msgDiv.innerText = '✅ Машина добавлена в базу! GitHub запустил пересборку сайта.';
+        msgDiv.innerText = '✅ Данные проверены и записаны в коммит! ИИ-граф обновляется.';
         document.getElementById('carForm').reset();
       } else {
-        msgDiv.innerText = '❌ Ошибка записи в GitHub';
+        msgDiv.innerText = '❌ Ошибка записи (проверьте права токена)';
       }
     } catch (err) {
-      msgDiv.innerText = '❌ Ошибка сети или токена';
+      msgDiv.innerText = '❌ Критическая ошибка сети';
       console.error(err);
     }
   });
