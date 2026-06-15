@@ -1,0 +1,54 @@
+[
+  {
+    "id": "porsche-911-carrera-s-2023",
+    "brand": "Porsche",
+    "model": "911 Carrera S",
+    "year": 2023,
+    "price": 142500,
+    "mileage": 4200,
+    "vin": "WP0AB2A90NS2XXXXX",
+    "engine": "3.0L Twin-Turbo H6",
+    "transmission": "8-Speed PDK",
+    "drivetrain": "RWD",
+    "color_ext": "Jet Black Metallic",
+    "color_int": "Bordeaux Red Club Leather",
+    "body_type": "Performance Car",
+    "tag": "Performance",
+    "storytelling": "Executive Performance Coupe engineered for visceral driver engagement and daily usability. This single-owner asset represents the pure lineage of Stuttgart's racing heritage, optioned with rear-axle steering and carbon-ceramic brake architecture.",
+    "trust": {
+      "inspection_status": "Certified 150-Point Passed",
+      "carfax_link": "https://www.carfax.com/vehicle/WP0AB2A90NS2XXXXX",
+      "warranty": "24 Months / Unlimited Mileage Dealer Sealed Warranty",
+      "dealer_rating": "4.9/5.0 Top-Tier Rated"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1200&q=80"
+    ]
+  },
+  {
+    "id": "bmw-x5-m60i-2023",
+    "brand": "BMW",
+    "model": "X5 M60i",
+    "year": 2023,
+    "price": 94800,
+    "mileage": 8900,
+    "vin": "WBA61EU00P0XXXXX",
+    "engine": "4.4L Twin-Turbo V8 + 48V Mild Hybrid",
+    "transmission": "8-Speed Sport Automatic",
+    "drivetrain": "xDrive AWD",
+    "color_ext": "Frozen Pure Grey Metallic",
+    "color_int": "Black Merino Leather",
+    "body_type": "Luxury SUV",
+    "tag": "Luxury SUV",
+    "storytelling": "Commanding luxury meets track-engineered dynamics. A continuous-power executive transport optimized for absolute security in low-traction environments, complete with Bowers & Wilkins Diamond Diamond Surround Sound.",
+    "trust": {
+      "inspection_status": "Master Certified Inspected",
+      "carfax_link": "https://www.carfax.com/vehicle/WBA61EU00P0XXXXX",
+      "warranty": "Balance of Factory Warranty + 12 Months Dealer Extension",
+      "dealer_rating": "4.9/5.0 Top-Tier Rated"
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80"
+    ]
+  }
+]
