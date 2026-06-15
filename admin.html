@@ -1,49 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Админка — добавить машину</title>
-  <link rel="stylesheet" href="/assets/style.css">
-</head>
-<body>
-<div class="container">
-  <h1>➕ Добавить автомобиль</h1>
-  <form id="carForm">
-    <input type="text" id="brand" placeholder="Марка (BMW)" required>
-    <input type="text" id="model" placeholder="Модель (X5)" required>
-    <input type="number" id="year" placeholder="Год" required>
-    <input type="number" id="price" placeholder="Цена $" required>
-    <input type="number" id="mileage" placeholder="Пробег (км)">
-    <input type="text" id="vin" placeholder="VIN номер">
-    <input type="text" id="photos" placeholder="Ссылки на фото (через запятую)" value="/assets/photos/default.jpg">
-    <button type="submit">💾 Сохранить машину</button>
-  </form>
-  <div id="msg"></div>
-</div>
 <script>
+  // КОНФИГ ДЛЯ СВЯЗИ С GITHUB (Заполни своими данными)
+  const GITHUB_TOKEN = "твой_персональный_токен_github"; 
+  const REPO_OWNER = "твой_логин_github";
+  const REPO_NAME = "имя_твоего_репозитория";
+  const FILE_PATH = "data/vehicles.json";
+
   document.getElementById('carForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const carData = {
-      id: `${document.getElementById('brand').value.toLowerCase()}-${document.getElementById('model').value.toLowerCase()}-${document.getElementById('year').value}`,
+    const msgDiv = document.getElementById('msg');
+    msgDiv.innerText = '⏳ Сохранение в базу данных...';
+
+    const newCar = {
+      id: `${document.getElementById('brand').value.toLowerCase().replace(/ /g, '-')}-${document.getElementById('model').value.toLowerCase().replace(/ /g, '-')}`,
       brand: document.getElementById('brand').value,
       model: document.getElementById('model').value,
       year: parseInt(document.getElementById('year').value),
       price: parseInt(document.getElementById('price').value),
-      mileage: parseInt(document.getElementById('mileage').value),
-      vin: document.getElementById('vin').value,
-      photos: document.getElementById('photos').value.split(',').map(s => s.trim()),
-      fuel: "Бензин",
-      transmission: "Автомат",
-      drive: "Полный",
-      description: "Новое поступление"
+      mileage: parseInt(document.getElementById('mileage').value || 0).toLocaleString() + " mi",
+      engine: "3.0L Twin-Turbo",
+      transmission: "Automatic",
+      img: document.getElementById('photos').value.split(',')[0].trim(),
+      badge: "New Arrival"
     };
-    const res = await fetch('/api/add-car', {
-      method: 'POST',
-      body: JSON.stringify(carData)
-    });
-    const result = await res.json();
-    document.getElementById('msg').innerText = result.success ? '✅ Машина добавлена!' : '❌ Ошибка';
+
+    try {
+      // 1. Получаем текущую базу данных и её SHA (id коммита)
+      const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+      const fileRes = await fetch(url, {
+        headers: { "Authorization": `token ${GITHUB_TOKEN}` }
+      });
+      
+      let currentData = [];
+      let sha = null;
+
+      if (fileRes.status === 200) {
+        const fileJson = await fileRes.json();
+        sha = fileJson.sha;
+        currentData = JSON.parse(atob(fileJson.content)); // Декодируем из Base64
+      }
+
+      // 2. Добавляем новую машину в массив
+      currentData.push(newCar);
+
+      // 3. Отправляем обновленный файл обратно в GitHub
+      const updateRes = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Authorization": `token ${GITHUB_TOKEN}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: `Система: добавлен автомобиль ${newCar.brand} ${newCar.model}`,
+          content: btoa(JSON.stringify(currentData, null, 2)), // Кодируем в Base64
+          sha: sha
+        })
+      });
+
+      if (updateRes.ok) {
+        msgDiv.innerText = '✅ Машина добавлена в базу! GitHub запустил пересборку сайта.';
+        document.getElementById('carForm').reset();
+      } else {
+        msgDiv.innerText = '❌ Ошибка записи в GitHub';
+      }
+    } catch (err) {
+      msgDiv.innerText = '❌ Ошибка сети или токена';
+      console.error(err);
+    }
   });
 </script>
-</body>
-</html>
