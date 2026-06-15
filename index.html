@@ -2,31 +2,364 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Автокаталог | ABC Cars Clone</title>
-  <link rel="stylesheet" href="/assets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABC Motors | Premium Car Dealer</title>
+  <meta name="description" content="Продажа автомобилей с пробегом в Миннесоте. Лизинг, кредит, обмен.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #fafaf8;
+      color: #1a1a1a;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    /* Header */
+    .header {
+      background: white;
+      border-bottom: 1px solid #e5e5e5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.95);
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1a1a1a, #3a3a3a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .nav {
+      display: flex;
+      gap: 32px;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 500;
+    }
+    .btn-contact {
+      background: #1a1a1a;
+      color: white !important;
+      padding: 10px 24px;
+      border-radius: 40px;
+    }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: white;
+      padding: 60px 0;
+      margin-bottom: 48px;
+      border-radius: 0 0 32px 32px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 18px;
+      opacity: 0.85;
+    }
+    
+    /* Filters */
+    .filters-panel {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 48px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-end;
+    }
+    .filter-group {
+      flex: 1;
+      min-width: 150px;
+    }
+    .filter-group label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #666;
+    }
+    .filter-group input, .filter-group select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .search-btn {
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    /* Cars Grid */
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+    .car-card {
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      cursor: pointer;
+    }
+    .car-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+    .car-image {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+    .car-info {
+      padding: 20px;
+    }
+    .car-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .car-details {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      color: #666;
+      margin: 12px 0;
+    }
+    .price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #00a86b;
+      margin: 12px 0;
+    }
+    .btn-view {
+      display: inline-block;
+      background: #f0f0f0;
+      color: #1a1a1a;
+      padding: 10px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      width: 100%;
+      text-align: center;
+    }
+    
+    /* Footer */
+    .footer {
+      background: #1a1a1a;
+      color: #888;
+      padding: 48px 0;
+      margin-top: 48px;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .header-inner { flex-direction: column; }
+      .nav { gap: 20px; }
+      .filters-panel { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🚗 Каталог автомобилей</h1>
-    
-    <!-- Поиск и фильтры -->
-    <div class="filters">
-      <input type="text" id="searchInput" placeholder="Поиск по марке или модели" class="search-box">
-      <select id="brandFilter">
-        <option value="">Все марки</option>
-        <option value="BMW">BMW</option>
-        <option value="Toyota">Toyota</option>
-      </select>
-      <input type="number" id="maxPrice" placeholder="Макс. цена $" class="price-filter">
-    </div>
-
-    <!-- Сетка машин (заполнится через JS) -->
-    <div id="carsGrid" class="cars-grid">
-      <div class="loading">Загрузка...</div>
+  <div class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">ABC MOTORS</div>
+        <div class="nav">
+          <a href="#">Купить</a>
+          <a href="#">Лизинг</a>
+          <a href="#">Обмен</a>
+          <a href="#" class="btn-contact">+1 (612) 555-1234</a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <script src="/assets/script.js"></script>
+  <div class="hero">
+    <div class="container">
+      <h1>Автомобили с пробегом<br>в Миннесоте</h1>
+      <p>Проверка VIN, гарантия, лизинг от 0.9% — более 200 авто в наличии</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="filters-panel">
+      <div class="filter-group">
+        <label>Марка</label>
+        <select id="brandFilter">
+          <option value="">Все марки</option>
+          <option value="BMW">BMW</option>
+          <option value="Mercedes">Mercedes-Benz</option>
+          <option value="Audi">Audi</option>
+          <option value="Porsche">Porsche</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Цена до</label>
+        <input type="number" id="priceFilter" placeholder="$">
+      </div>
+      <div class="filter-group">
+        <label>Год</label>
+        <select id="yearFilter">
+          <option value="">Любой</option>
+          <option>2024</option><option>2023</option><option>2022</option>
+        </select>
+      </div>
+      <button class="search-btn" onclick="filterCars()">🔍 Найти</button>
+    </div>
+
+    <div id="carsGrid" class="cars-grid">
+      <div style="text-align:center; padding:60px;">Загрузка автомобилей...</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <p>© 2025 ABC Motors — Лицензированный дилер в Миннесоте</p>
+    </div>
+  </div>
+
+  <script>
+    // База данных автомобилей (полная копия стиля abc cars)
+    const carsDatabase = [
+      {
+        id: "bmw-x5-2023",
+        brand: "BMW",
+        model: "X5",
+        year: 2023,
+        price: 49900,
+        mileage: 15200,
+        fuel: "Premium",
+        transmission: "Automatic",
+        color: "Black Sapphire",
+        image: "https://images.unsplash.com/photo-1607853202273-1b494d8c6e5b?w=600",
+        vin: "5UXCR6C09P9N12345"
+      },
+      {
+        id: "mercedes-gle-2023",
+        brand: "Mercedes",
+        model: "GLE 450",
+        year: 2023,
+        price: 58900,
+        mileage: 11300,
+        fuel: "Premium",
+        transmission: "Automatic",
+        color: "White",
+        image: "https://images.unsplash.com/photo-1617814076367-b759c7d9e738?w=600",
+        vin: "4JGFB4KB8PA123456"
+      },
+      {
+        id: "audi-q8-2024",
+        brand: "Audi",
+        model: "Q8",
+        year: 2024,
+        price: 69900,
+        mileage: 5400,
+        fuel: "Premium",
+        transmission: "Automatic",
+        color: "Daytona Gray",
+        image: "https://images.unsplash.com/photo-1606661282733-6c9bc9b2c3c7?w=600",
+        vin: "WA1BVBF14PD012345"
+      },
+      {
+        id: "porsche-cayenne-2022",
+        brand: "Porsche",
+        model: "Cayenne",
+        year: 2022,
+        price: 74900,
+        mileage: 28600,
+        fuel: "Premium",
+        transmission: "Automatic",
+        color: "Jet Black",
+        image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=600",
+        vin: "WP1AA2AY2PDA12345"
+      }
+    ];
+
+    let currentCars = [...carsDatabase];
+
+    function renderCars(cars) {
+      const grid = document.getElementById('carsGrid');
+      if (!cars.length) {
+        grid.innerHTML = '<div style="text-align:center; padding:60px;">🚫 Автомобили не найдены. Измените фильтры.</div>';
+        return;
+      }
+      
+      grid.innerHTML = cars.map(car => `
+        <div class="car-card" onclick="location.href='/car.html?id=${car.id}'">
+          <img class="car-image" src="${car.image}" alt="${car.brand} ${car.model}" loading="lazy">
+          <div class="car-info">
+            <div class="car-title">${car.brand} ${car.model} ${car.year}</div>
+            <div class="car-details">
+              <span>📅 ${car.year}</span>
+              <span>📏 ${car.mileage.toLocaleString()} mi</span>
+              <span>⛽ ${car.fuel}</span>
+            </div>
+            <div class="price">$${car.price.toLocaleString()}</div>
+            <div class="btn-view">Посмотреть →</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterCars() {
+      const brand = document.getElementById('brandFilter').value;
+      const maxPrice = parseInt(document.getElementById('priceFilter').value) || Infinity;
+      const year = document.getElementById('yearFilter').value;
+      
+      const filtered = carsDatabase.filter(car => {
+        if (brand && car.brand !== brand) return false;
+        if (car.price > maxPrice) return false;
+        if (year && car.year !== parseInt(year)) return false;
+        return true;
+      });
+      currentCars = filtered;
+      renderCars(currentCars);
+    }
+
+    // Загрузка каталога
+    renderCars(carsDatabase);
+    
+    // Экспорт в глобальную область
+    window.filterCars = filterCars;
+  </script>
 </body>
 </html>
