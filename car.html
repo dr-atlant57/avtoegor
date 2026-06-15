@@ -2,24 +2,134 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Карточка автомобиля</title>
-  <link rel="stylesheet" href="/assets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABC Motors | Car Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #fafaf8; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    
+    /* Галерея */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    @media (min-width: 768px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 24px;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+    
+    /* Спецификации */
+    .specs {
+      background: white;
+      padding: 32px;
+      border-radius: 32px;
+      margin: 24px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 24px;
+    }
+    .price-large {
+      font-size: 48px;
+      font-weight: 700;
+      color: #00a86b;
+      margin: 16px 0;
+    }
+    
+    /* Кнопки */
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 24px 0;
+    }
+    .btn-call, .btn-wa, .btn-form {
+      padding: 16px 32px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+      flex: 1;
+    }
+    .btn-call { background: #1a1a1a; color: white; }
+    .btn-wa { background: #25D366; color: white; }
+    .btn-form { background: #f0f0f0; color: #1a1a1a; cursor: pointer; }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: #666;
+      text-decoration: none;
+    }
+    
+    @media (max-width: 768px) {
+      .specs { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <div class="container" id="carContainer">
-    <div class="loading">Загрузка автомобиля...</div>
-  </div>
-  <script src="/assets/script.js"></script>
-  <script>
-    // Определяем ID машины из URL (?id=bmw-x5-2023)
-    const params = new URLSearchParams(window.location.search);
-    const carId = params.get('id');
-    if (carId) {
-      loadCarPage(carId);
-    } else {
-      document.getElementById('carContainer').innerHTML = '<p>Машина не найдена</p>';
-    }
-  </script>
+<div class="container" id="carContainer">
+  <a href="/" class="back-link">← Назад к каталогу</a>
+  <div style="text-align:center; padding:60px;">Загрузка информации...</div>
+</div>
+
+<script>
+  // Та же база (в реальности вынесешь в общий JSON)
+  const carsDatabase = [
+    { id: "bmw-x5-2023", brand: "BMW", model: "X5", year: 2023, price: 49900, mileage: 15200, fuel: "Premium", transmission: "Automatic", color: "Black Sapphire", vin: "5UXCR6C09P9N12345", image: "https://images.unsplash.com/photo-1607853202273-1b494d8c6e5b?w=800", description: "Люксовая комплектация с пакетом M Sport, кожа Merino, подогрев руля, панорамная крыша." },
+    { id: "mercedes-gle-2023", brand: "Mercedes", model: "GLE 450", year: 2023, price: 58900, mileage: 11300, fuel: "Premium", transmission: "Automatic", color: "White", vin: "4JGFB4KB8PA123456", image: "https://images.unsplash.com/photo-1617814076367-b759c7d9e738?w=800", description: "AMG пакет, кожа Nappa, 4MATIC, подогрев всех сидений." },
+    { id: "audi-q8-2024", brand: "Audi", model: "Q8", year: 2024, price: 69900, mileage: 5400, fuel: "Premium", transmission: "Automatic", color: "Daytona Gray", vin: "WA1BVBF14PD012345", image: "https://images.unsplash.com/photo-1606661282733-6c9bc9b2c3c7?w=800", description: "Quattro, Bang & Olufsen, 3D камеры." },
+    { id: "porsche-cayenne-2022", brand: "Porsche", model: "Cayenne", year: 2022, price: 74900, mileage: 28600, fuel: "Premium", transmission: "Automatic", color: "Jet Black", vin: "WP1AA2AY2PDA12345", image: "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=800", description: "Пакет Sport Chrono, адаптивный круиз-контроль." }
+  ];
+
+  const params = new URLSearchParams(window.location.search);
+  const carId = params.get('id');
+  const car = carsDatabase.find(c => c.id === carId);
+
+  if (car) {
+    document.getElementById('carContainer').innerHTML = `
+      <a href="/" class="back-link">← Назад к каталогу</a>
+      <h1>${car.brand} ${car.model} ${car.year}</h1>
+      <div class="price-large">$${car.price.toLocaleString()}</div>
+      
+      <div class="gallery">
+        <img src="${car.image}" alt="${car.brand} ${car.model}">
+        <img src="${car.image.replace('?w=800','?w=800&2') || car.image}" alt="Дополнительное фото" onerror="this.src='${car.image}'">
+      </div>
+      
+      <div class="specs">
+        <div><strong>Пробег</strong><br>${car.mileage.toLocaleString()} миль</div>
+        <div><strong>Топливо</strong><br>${car.fuel}</div>
+        <div><strong>Коробка</strong><br>${car.transmission}</div>
+        <div><strong>Цвет</strong><br>${car.color}</div>
+        <div><strong>VIN</strong><br>${car.vin}</div>
+        <div><strong>Гарантия</strong><br>6 месяцев</div>
+      </div>
+      
+      <p style="font-size:16px; line-height:1.6; margin:24px 0;">${car.description}</p>
+      
+      <div class="btn-group">
+        <a href="tel:+16125551234" class="btn-call">📞 Позвонить</a>
+        <a href="https://wa.me/16125551234" class="btn-wa" target="_blank">💬 WhatsApp</a>
+        <button class="btn-form" onclick="alert('Заявка отправлена! Мы перезвоним в течение 15 минут.')">🚙 Записаться на тест-драйв</button>
+      </div>
+      
+      <div style="background:#f0f0f0; padding:24px; border-radius:24px; margin-top:24px;">
+        <h3>✅ Проверка автомобиля</h3>
+        <p>✅ Отчет Carfax доступен<br>✅ Кредит и лизинг от 0.9%<br>✅ Обмен вашего авто</p>
+      </div>
+    `;
+  } else {
+    document.getElementById('carContainer').innerHTML = `<h1>Автомобиль не найден</h1><a href="/">Вернуться в каталог</a>`;
+  }
+</script>
 </body>
 </html>
