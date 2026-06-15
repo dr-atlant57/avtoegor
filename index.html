@@ -463,7 +463,7 @@
       }
 
       grid.innerHTML = filtered.map(car => `
-        <a href="car.html?id=${car.id}" class="card">
+        <a href="cars/${car.id}.html" class="card">
           <div class="image-box">
             <span class="badge">${car.badge}</span>
             <picture>
@@ -498,5 +498,30 @@
     // FIRST PAINT EXECUTION
     renderInventory();
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AutomotiveBusiness",
+      "@id": "https://yishu.business/#dealer",
+      "name": "YISHU Luxury",
+      "telephone": "+16125550199",
+      "url": "https://yishu.business"
+    },
+    {
+      "@type": "ItemList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "url": "https://yishu.business/cars/porsche-911.html" },
+        { "@type": "ListItem", "position": 2, "url": "https://yishu.business/cars/amg-gt.html" },
+        { "@type": "ListItem", "position": 3, "url": "https://yishu.business/cars/bmw-m8.html" },
+        { "@type": "ListItem", "position": 4, "url": "https://yishu.business/cars/audi-rs7.html" },
+        { "@type": "ListItem", "position": 5, "url": "https://yishu.business/cars/lexus-lc.html" },
+        { "@type": "ListItem", "position": 6, "url": "https://yishu.business/cars/range-rover.html" }
+      ]
+    }
+  ]
+}
+</script>
 </body>
 </html>
