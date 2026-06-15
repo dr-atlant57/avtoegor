@@ -1,0 +1,31 @@
+name: Compile AI Knowledge Graph and Programmatic SEO Nodes
+
+on:
+  push:
+    paths:
+      - 'data/**'
+      - 'compile.js'
+
+jobs:
+  build_infrastructure:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Access Repository Context
+      uses: actions/checkout@v3
+
+    - name: Initialize High-Performance Node Engine
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Orchestrate Programmatic SEO Build
+      run: node compile.js
+
+    - name: Inject and Push Structural Updates to Edge CDN
+      run: |
+        git config --global user.name "yishu-infrastructure-bot"
+        git config --global user.email "infrastructure-bot@yishu.business"
+        git add cars/ *.html
+        git diff-index --quiet HEAD || git commit -m "System-generated compilation: Entity nodes & programmatic categories updated."
+        git push
