@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Админка — добавить машину</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>➕ Добавить автомобиль</h1>
+  <form id="carForm">
+    <input type="text" id="brand" placeholder="Марка (BMW)" required>
+    <input type="text" id="model" placeholder="Модель (X5)" required>
+    <input type="number" id="year" placeholder="Год" required>
+    <input type="number" id="price" placeholder="Цена $" required>
+    <input type="number" id="mileage" placeholder="Пробег (км)">
+    <input type="text" id="vin" placeholder="VIN номер">
+    <input type="text" id="photos" placeholder="Ссылки на фото (через запятую)" value="/assets/photos/default.jpg">
+    <button type="submit">💾 Сохранить машину</button>
+  </form>
+  <div id="msg"></div>
+</div>
+<script>
+  document.getElementById('carForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const carData = {
+      id: `${document.getElementById('brand').value.toLowerCase()}-${document.getElementById('model').value.toLowerCase()}-${document.getElementById('year').value}`,
+      brand: document.getElementById('brand').value,
+      model: document.getElementById('model').value,
+      year: parseInt(document.getElementById('year').value),
+      price: parseInt(document.getElementById('price').value),
+      mileage: parseInt(document.getElementById('mileage').value),
+      vin: document.getElementById('vin').value,
+      photos: document.getElementById('photos').value.split(',').map(s => s.trim()),
+      fuel: "Бензин",
+      transmission: "Автомат",
+      drive: "Полный",
+      description: "Новое поступление"
+    };
+    const res = await fetch('/api/add-car', {
+      method: 'POST',
+      body: JSON.stringify(carData)
+    });
+    const result = await res.json();
+    document.getElementById('msg').innerText = result.success ? '✅ Машина добавлена!' : '❌ Ошибка';
+  });
+</script>
+</body>
+</html>
