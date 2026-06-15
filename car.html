@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Карточка автомобиля</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <div class="container" id="carContainer">
+    <div class="loading">Загрузка автомобиля...</div>
+  </div>
+  <script src="/assets/script.js"></script>
+  <script>
+    // Определяем ID машины из URL (?id=bmw-x5-2023)
+    const params = new URLSearchParams(window.location.search);
+    const carId = params.get('id');
+    if (carId) {
+      loadCarPage(carId);
+    } else {
+      document.getElementById('carContainer').innerHTML = '<p>Машина не найдена</p>';
+    }
+  </script>
+</body>
+</html>
