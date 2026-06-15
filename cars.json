@@ -1,0 +1,38 @@
+{
+  "cars": [
+    {
+      "id": "bmw-x5-2023",
+      "brand": "BMW",
+      "model": "X5",
+      "year": 2023,
+      "price": 49900,
+      "mileage": 15000,
+      "fuel": "Бензин",
+      "transmission": "Автомат",
+      "drive": "Полный",
+      "vin": "5UXCR6C09P9N12345",
+      "description": "Люксовая комплектация, кожа, панорама, подогрев всего.",
+      "photos": [
+        "/assets/photos/bmw-x5-1.jpg",
+        "/assets/photos/bmw-x5-2.jpg"
+      ]
+    },
+    {
+      "id": "toyota-camry-2024",
+      "brand": "Toyota",
+      "model": "Camry",
+      "year": 2024,
+      "price": 27500,
+      "mileage": 8000,
+      "fuel": "Бензин",
+      "transmission": "Автомат",
+      "drive": "Передний",
+      "vin": "4T1G11AK6PU123456",
+      "description": "Экономичная, надежная, с завода.",
+      "photos": [
+        "/assets/photos/camry-1.jpg",
+        "/assets/photos/camry-2.jpg"
+      ]
+    }
+  ]
+}
