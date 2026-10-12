@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Егор, Миннеаполис</title>
+<meta name="description" content="Как запустить продающие страницы и таргет в Миннеаполисе: машины, недвижимость, услуги.">
+<meta property="og:title" content="Егор, если ты это читаешь — реклама сработала">
+<meta property="og:description" content="Продающие страницы + таргет в Миннеаполисе. Машины, дома, услуги.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#101318; --bg2:#171b22; --card:#1c212a; --line:#2c333e;
+    --text:#f1f4f8; --muted:#c3cbd6; --accent:#ffb547; --accent2:#5fd4c4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;font-size:17px;line-height:1.55}
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px}
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  h1{font-size:clamp(30px,7vw,46px);line-height:1.12;font-weight:800;letter-spacing:-.5px}
+  h2{font-size:clamp(24px,5.5vw,32px);line-height:1.2;font-weight:800;margin-bottom:18px}
+  h3{font-size:19px;font-weight:800;margin-bottom:8px}
+  p{color:var(--muted)}
+  .lead{font-size:19px;color:var(--text);margin-top:18px}
+  .tag{display:inline-block;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .accent{color:var(--accent)}
+  .hero{padding:72px 0 56px;background:radial-gradient(120% 80% at 80% 0%,#2a2416 0%,var(--bg) 60%)}
+  .btn{display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:#25d366;color:#08210f;font-weight:800;font-size:17px;padding:16px 26px;border-radius:14px;text-decoration:none}
+  .btn:active{transform:scale(.98)}
+  .grid{display:grid;gap:14px}
+  @media(min-width:640px){.grid.two{grid-template-columns:1fr 1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .card .ico{font-size:28px;margin-bottom:10px}
+  .card ul{margin-top:12px;padding-left:20px;color:var(--muted)}
+  .card li{margin-bottom:6px}
+  .card li b{color:var(--text)}
+  .proof{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .chip{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:15px;color:var(--text)}
+  .roles{display:grid;gap:14px}
+  @media(min-width:640px){.roles{grid-template-columns:1fr 1fr}}
+  .role h3 span{display:block;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);margin-bottom:4px}
+  ol.steps{list-style:none;counter-reset:s}
+  ol.steps li{counter-increment:s;position:relative;padding:0 0 22px 54px;color:var(--muted)}
+  ol.steps li b{color:var(--text);display:block;font-size:18px}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#1a1405;font-weight:800;display:grid;place-items:center}
+  .price{position:relative}
+  .price.top{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .price .badge{position:absolute;top:-12px;right:16px;background:var(--accent);color:#1a1405;font-size:13px;font-weight:800;padding:4px 10px;border-radius:8px}
+  .price .sum{font-size:30px;font-weight:800;color:var(--text);margin:6px 0 4px}
+  .note{font-size:14px;color:var(--muted);margin-top:14px}
+  .warn{background:#1f1a12;border:1px solid #4a3a1c;border-radius:16px;padding:22px}
+  .warn li{margin:0 0 10px 20px;color:var(--muted)}
+  .warn li b{color:var(--text)}
+  footer{padding:56px 0 80px;text-align:center}
+  footer p{margin-top:10px}
+</style>
+</head>
+<body>
+
+<!-- ▼ Поменяй номер WhatsApp (только цифры, с кодом страны) -->
+<script>const WA_NUMBER = "996XXXXXXXXX";</script>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">Миннеаполис · тест гипотезы</span>
+    <h1>Егор, если ты это читаешь — <span class="accent">реклама тебя нашла.</span></h1>
+    <p class="lead">Я дал таргет на Миннеаполис из Бишкека, и ты его увидел. Точно так же реклама находит покупателя на машину, дом или услугу. Давай запустим это у тебя.</p>
+    <a class="btn wa" href="#">💬 Написать в WhatsApp</a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Что уже работает</span>
+    <h2>Страница-витрина + таргет = звонки</h2>
+    <p>В Кыргызстане я делаю под каждый объект отдельную продающую страницу: фото, видео, описание, кнопка WhatsApp. Сверху — рекламный ролик с таргетом на нужный город. Человек видит рекламу, переходит и пишет.</p>
+    <div class="proof">
+      <span class="chip">🚗 BMW 745i — страница + рассрочка</span>
+      <span class="chip">🏠 Дом в Кара-Балте под бизнес</span>
+      <span class="chip">⚡ Сервис «Быстрая продажа»</span>
+    </div>
+    <p class="note">Страница делается за несколько часов. Реклама запускается в тот же день.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Три направления</span>
+    <h2>Что продавать в Миннеаполисе</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">🚚</div>
+        <h3>Машины</h3>
+        <p>Тот же механизм, что и в Кыргызстане, только аудитория — Twin Cities и вся Миннесота.</p>
+        <ul>
+          <li><b>Свои машины</b> — коммерческие вэны и пикапы (rustfreefleet): у каждой своя страница, свой ролик.</li>
+          <li><b>Под клиента</b> — частник продаёт машину, мы делаем страницу и рекламу за фикс.</li>
+          <li>Каждая страница — отдельная реклама на радиус вокруг города.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ico">🏡</div>
+        <h3>Недвижимость</h3>
+        <p>В США многие продают сами (FSBO), чтобы не платить риелтору 5–6%. Им нужна витрина и показ покупателям.</p>
+        <ul>
+          <li><b>Страница дома</b> — фото, видео-тур, район, цена, кнопка связи.</li>
+          <li><b>Аренда</b> — владельцам квартир и домов под сдачу.</li>
+          <li>Мы продаём маркетинг за фиксированную цену, а не процент со сделки.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ico">🛠️</div>
+        <h3>Услуги</h3>
+        <p>Малый бизнес в Миннеаполисе — ремонт, траки, клининг, авто-сервис — часто без нормального сайта и рекламы.</p>
+        <ul>
+          <li><b>Одностраничник + таргет</b> под каждую услугу.</li>
+          <li><b>Русскоязычная община</b> Twin Cities — быстрый старт через своих.</li>
+          <li>Ежемесячное ведение рекламы — это постоянный доход.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Как делим роли</span>
+    <h2>Ты — на месте, я — система</h2>
+    <div class="roles">
+      <div class="card role">
+        <h3><span>Егор · Миннеаполис</span>Клиенты и объекты</h3>
+        <ul>
+          <li>Находишь клиентов и машины</li>
+          <li>Снимаешь фото и видео по чек-листу</li>
+          <li>Встречи, показы, тест-драйвы</li>
+        </ul>
+      </div>
+      <div class="card role">
+        <h3><span>Альберт · Бишкек</span>Страницы и реклама</h3>
+        <ul>
+          <li>Продающая страница под объект</li>
+          <li>Рекламный ролик для Reels</li>
+          <li>Таргет и разбор заявок</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Процесс</span>
+    <h2>От фото до звонка</h2>
+    <ol class="steps">
+      <li><b>Фото и видео</b>Снимаешь объект на телефон — 15–20 кадров и короткий проход с видео.</li>
+      <li><b>Страница</b>Я собираю витрину с кнопкой WhatsApp/звонка за несколько часов.</li>
+      <li><b>Ролик и таргет</b>Динамичный Reels и реклама на нужный радиус вокруг города.</li>
+      <li><b>Заявки</b>Покупатели пишут напрямую. Ты закрываешь сделку на месте.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Пакеты для клиентов · ориентир</span>
+    <h2>Сколько это может стоить</h2>
+    <div class="grid">
+      <div class="card price top">
+        <span class="badge">Лучший выбор</span>
+        <h3>Под ключ</h3>
+        <div class="sum">$490</div>
+        <p>Страница, ролик, реклама 14 дней, разбор заявок, отчёт.</p>
+      </div>
+      <div class="card price">
+        <h3>Стандарт</h3>
+        <div class="sum">$290</div>
+        <p>Страница, ролик, реклама 7 дней.</p>
+      </div>
+      <div class="card price">
+        <h3>Страница</h3>
+        <div class="sum">$149</div>
+        <p>Только продающая страница со ссылкой.</p>
+      </div>
+    </div>
+    <p class="note">Цены — стартовые, без рекламного бюджета. Обсудим и подстроим под рынок.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="tag">Что учесть в США</span>
+    <h2>Чтобы всё было чисто</h2>
+    <div class="warn">
+      <ul>
+        <li><b>Продажа машин:</b> в Миннесоте при регулярной перепродаже нужна дилерская лицензия — уточним порог и оформим заранее.</li>
+        <li><b>Недвижимость:</b> посредничество за процент требует лицензии риелтора. Поэтому продаём маркетинг-услугу за фикс.</li>
+        <li><b>Реклама жилья:</b> у Meta это особая категория — таргет только по географии, без возраста и пола. Для машин и услуг ограничений нет.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>Ну что, начинаем?</h2>
+    <p>Напиши мне — обсудим первый объект в Миннеаполисе.</p>
+    <a class="btn wa" href="#">💬 Написать Альберту</a>
+  </div>
+</footer>
+
+<script>
+  const msg = encodeURIComponent("Альберт, привет! Увидел рекламу в Миннеаполисе 🙂 Давай обсудим.");
+  document.querySelectorAll(".wa").forEach(a => {
+    a.href = "https://wa.me/" + WA_NUMBER + "?text=" + msg;
+    a.target = "_blank"; a.rel = "noopener";
+  });
+</script>
+</body>
+</html>
